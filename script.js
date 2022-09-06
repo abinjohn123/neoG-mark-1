@@ -1,5 +1,8 @@
 const R = require('readline-sync');
 
+let score = 0,
+  correctAnswers = 0;
+
 const questions = [
   {
     question: 'Which city is Abin based off of?: ',
@@ -24,3 +27,24 @@ const questions = [
     answer: 'realme',
   },
 ];
+
+function playGame() {
+  for (const Q of questions) {
+    const answer = R.question(Q.question).toLowerCase();
+
+    if (answer === Q.answer) {
+      console.log(`Right answer! Score = ${++score}\n`);
+      ++correctAnswers;
+    } else console.log(`Wrong answer! Score = ${--score}\n`);
+  }
+}
+
+function displayScore() {
+  console.log(
+    `\n\nYou answered ${correctAnswers}/${questions.length} questions correctly.\nFinal score is ${score}`
+  );
+}
+
+// ----------------
+playGame();
+displayScore();
